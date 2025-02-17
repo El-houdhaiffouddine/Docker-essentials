@@ -30,12 +30,35 @@ Docker has created 4 ways to persist your data when you are running a container 
 <ul>
 <li><b>Volumes mounts:</b> A volume is the best way to persist container data in Docker. When this volume type is specified, Docker creates a file system in the host operating system which is mounted by the Docker daemon when you run your container. All the container data are persisted (stored) in that file system in the host operating system. Direct access to the host file system in the container is unsupported by this storage type and even when you delete completely your docker container, all stored data in the volume doesn't diseaper.</li>
 <li><b>Bind mounts:</b> This type of storage allows the container to have a direct access to the host file system which can causes security issues. The philosophy of this storage is the same as the one from the volume but their differences reside in the accessibility of the host file system.</li>
-<li><b>tmpfs mounts:</b> This type of storage allows you to store or persist container data in the memory (RAM) rather than saving them in the hard disk of the host operating system. You can use this storage if you are managing ephemere data. </li>
-<li><b>Named pipes:</b> A named pipe (FIFO: first in, first out) in the programming language, is a way to create specific files and allow processes to read and write inside that files and communicate together. In Docker, named pipe are used to create a communication between a container (a program in a container) and the Docker API.</li>
+<li><b>tmpfs mounts:</b> This type of storage allows you to store or persist container data in the memory (RAM) rather than saving them in the hard disk of the host operating system. You can use this storage if you are managing ephemere data. 
+</li>
+<li><b>Named pipes:</b> A named pipe (FIFO: first in, first out) in the programming language, is a way to create specific files and allow processes to read and write inside that files and communicate together. In Docker, named pipe are used to create a communication between a container (a program in a container) and the Docker API.   </li>
 </ul>
 <h2>Docker compose</h2><br/>
-<b>Docker compose</b> is a tool which allows you to build and run multiple containers as services in a single YAML file. For example, if you wanna interconnect your frontend and backend web app within Docker, you have to use Docker compose by specifying all your needs (networks, images, volumes, configs, ...) in the YAML file and run a single command to launch them one time. Docker compose made easy the manipulation of Docker technology.
-
+<b>Docker compose</b> is a tool which allows you to build and run multiple containers as services in a single YAML file. 
+For example, if you wanna interconnect your frontend and backend web app within Docker, you have to use Docker compose by specifying all your needs (networks, images, volumes, configs, ...) in the YAML file and run a single command to launch them one time.
+ Docker compose made easy the manipulation of Docker technology.<br/>
+<h2>How to create a Docker image and run a Docker container ?</h2><br/>
+In this section, we are going to see how to create a docker image and how to transform that image into a container.
+Creating a docker image and transform it into a docker container requires 3 steps which are : Writing the Dockerfile content, building the docker image and creating the docker container.<br/>
+<h3>Writing the Dockerfile content</h3><br/>
+A Dockerfile is a specific text file without extension (example, .exe, .txt, pdf) used in Docker to write all the necessary instructions that the Docker engine should use to build (create) a docker image.
+Creating a docker image, requires the creating of this file by naming it <b>Dockerfile</b> or with your preferred name. Once you created this file, you can add your preferred instructions inside the file and then build your docker image.
+A docker instruction is just a simple docker command followed by options which are used by the docker daemon to create the docker image. A docker instruction is composed by a code mneumonic plus options and its input (example: os commands, ... ):<b> docker-instruction [option1 option2 ...] input</b>.<br/>
+An example of a docker instruction is:<b>VOLUME /home/user1/storage1 /tmp/storage1 </b> which sets a volume to persist container data.<br/>
+Each docker instruction create a new layer on top of the current image. A docker is updated only if you edit its corresponding instruction or you specify <b>-- no-cache</b> during the building stage of the docker image.<br/>
+<h4>Common docker instructions:</h4><br/>
+<ul>
+<li>FROM: This is the foundation of your docker image and it specifies the base image of your docker image that subsequent instructions will build upon. Most of Dockerfile should contain this instruction.</li>
+<li>RUN: Runs os commands to install packages and build applications and configure the environnement.</li>
+<li>ADD: Allows you to copy both local and remote files and directories (git files, zip files, ...) into your docker image.</li>
+<li>COPY: Copy local files and directories from your host operating system to your docker image. </li>
+<li>ENV: Create environnement variables that will be used with other docker instructions to create the docker image.</li>
+<li>WORKDIR: Sets the working directory for subsequent instructions that follow it in the Dockerfile (ENTRYPOINT, RUN, CMD, ...).</li>
+<li>USER: Defines or sets the user that the docker engine will use to run subsequent commands. This user will be the default user of the running container.</li>
+<li>VOLUME: It used by the docker engine to create a specific volume (storage) to persist data from the container. This is very useful if you wanna persist data from a database container or you have critical data that need to be saved.</li>
+<li>ENTRYPOINT: It used to specify the default command which will be run in the container</li>
+</ul> 
 </p>
 
 
