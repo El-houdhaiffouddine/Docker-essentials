@@ -63,7 +63,13 @@ Each docker instruction create a new layer on top of the current image. A docker
 <h3>2. Building the docker image</h3><br/>
  <p>Once we finish to write our Dockerfile content, the next step now is to build our Docker image. Building a Docker image means running the <b>docker build</b> command. In our case we should run that command as follows: <b>docker build -t flask-app:1.0.0 -f Flask-App .</b> that command will create a docker image which contains the Flask App. <b>-t</b> specifies the tags of our docker image.<b>-f</b> specifies the name of our Dockerfile image which is Flask-App. By default, the Dockerfile is named<b>Dockerfile</b> and if it has this specific name so you don't need to specify the option <b>-f</b>. <b>.</b> specifies the exact location of the Dockerfile which in this case is located in the same directory we runs the docker command.<br/></p>
  <h3>3. Creation of the docker container</h3><br/>
-<p>Creating a docker container means run the following command: <b>docker container create --name flask-container flask-app:1.0.0</b>. <b>--name</b>allows us to specify the container name. Once the container is created, we can run it and the start interacting with the Flask App. To do that, we have to run the following command:<b>docker container run flask-container</b>. That command will start the flask container and automatically the Flask App will be accessible on 8080 port.</p>
+<p>Creating a docker container means run the following command: <b>docker container create --name flask-container flask-app:1.0.0</b>. <b>--name</b>allows us to specify the container name. Once the container is created, we can run it and the start interacting with the Flask App. To do that, we have to run the following command:<b>docker container run flask-container</b>. That command will start the flask container and automatically the Flask App will be accessible on 8080 port.<br><br/>
+<h2 style="color:blue">References:</h2><br/>
+<a href="https://docs.docker.com/reference/dockerfile/">Dockerfile reference</a><br/>
+<a href="https://docs.docker.com/engine/network/">Docker Networking overview</a><br/>
+<a href="https://docs.docker.com/engine/storage/">Docker storage</a><br/>
+<a href="https://docs.docker.com/compose/">Docker Compose</a>
+</p>
 </p>
 
 
