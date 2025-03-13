@@ -40,8 +40,8 @@ For example, if you wanna interconnect your frontend and backend web app within 
  Docker compose made easy the manipulation of Docker technology.<br/>
 <h2>How to create a Docker image and run a Docker container ?</h2><br/>
 In this section, we are going to see how to create a docker image and how to transform that image into a container.
-Creating a docker image and transform it into a docker container requires 3 steps which are : Writing the Dockerfile content, building the docker image and creating the docker container.<br/>
-<h3>Writing the Dockerfile content</h3><br/>
+Creating a docker image and transform it into a docker container requires 3 steps which are : Writing the Dockerfile content, building the docker image and creation of the docker container.<br/>
+<h3>1. Writing the Dockerfile content</h3><br/>
 A Dockerfile is a specific text file without extension (example, .exe, .txt, pdf) used in Docker to write all the necessary instructions that the Docker engine should use to build (create) a docker image.
 Creating a docker image, requires the creating of this file by naming it <b>Dockerfile</b> or with your preferred name. Once you created this file, you can add your preferred instructions inside the file and then build your docker image.
 A docker instruction is just a simple docker command followed by options which are used by the docker daemon to create the docker image. A docker instruction is composed by a code mneumonic plus options and its input (example: os commands, ... ):<b> docker-instruction [option1 option2 ...] input</b>.<br/>
@@ -52,13 +52,18 @@ Each docker instruction create a new layer on top of the current image. A docker
 <li>FROM: This is the foundation of your docker image and it specifies the base image of your docker image that subsequent instructions will build upon. Most of Dockerfile should contain this instruction.</li>
 <li>RUN: Runs os commands to install packages and build applications and configure the environnement.</li>
 <li>ADD: Allows you to copy both local and remote files and directories (git files, zip files, ...) into your docker image.</li>
-<li>COPY: Copy local files and directories from your host operating system to your docker image. </li>
-<li>ENV: Create environnement variables that will be used with other docker instructions to create the docker image.</li>
+<li>COPY: Copies local files and directories from your host operating system to your docker image. </li>
+<li>ENV: Creates environnement variables that will be used with other docker instructions to create the docker image.</li>
 <li>WORKDIR: Sets the working directory for subsequent instructions that follow it in the Dockerfile (ENTRYPOINT, RUN, CMD, ...).</li>
 <li>USER: Defines or sets the user that the docker engine will use to run subsequent commands. This user will be the default user of the running container.</li>
 <li>VOLUME: It used by the docker engine to create a specific volume (storage) to persist data from the container. This is very useful if you wanna persist data from a database container or you have critical data that need to be saved.</li>
 <li>ENTRYPOINT: It used to specify the default command which will be run in the container</li>
-</ul> 
+</ul>
+<p>To write our Dockerfile content, we are going to use a simple Flask application which manages Employees by doing CRUD(Create Read Update Delete). Feel free to access on the source code of the App by clicking <a href="https://github.com/El-houdhaiffouddine/Python_with_Flask.git">here</a>. So the principal goal of the docker image we are going to create is about to run that Flask App in a docker container. We named our Dockerfile with the name <b>Flask-App</b>. Feel free to read it <a href=#>here</a>.<br/></p>
+<h3>2. Building the docker image</h3><br/>
+ <p>Once we finish to write our Dockerfile content, the next step now is to build our Docker image. Building a Docker image means running the <b>docker build</b> command. In our case we should run that command as follows:<b>docker build -t flask-app:1.0.0 -f Flask-App .</b> that command will create a docker image which contains the Flask App. <b>-t</b> specifies the tags of our docker image.<b>-f</b> specifies the name of our Dockerfile image which is Flask-App. By default, the Dockerfile is named<b>Dockerfile</b> and if it has this specific name so you don't need to specify the option <b>-f</b>. <b>.</b> specifies the exact location of the Dockerfile which in this case is located in the same directory we runs the docker command.<br/></p>
+ <h3>3. Creation of the docker container</h3><br/>
+<p>Creating a docker container means run the following command: <b>docker container create --name flask-container flask-app:1.0.0</b>. <b>--name</b>allows us to specify the container name. Once the container is created, we can run it and the start interacting with the Flask App. To do that, we have to run the following command:<b>docker container run flask-container</b>. That command will start the flask container and automatically the Flask App will be accessible on 8080 port.</p>
 </p>
 
 
