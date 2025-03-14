@@ -12,7 +12,7 @@ LABEL description="This is a Dockerfile which creates a docker image which \
                     will run a docker container which contains a Flask app "
 #This Docker instruction permits to specify the maintainer of this Flask image.
 #This also can be done by using LABEL instruction
-MAINTAINER Ben
+LABEL org.opencontainers.image.authors="Ben"
 
 #This instructions allows us to install in the container all the required 
 #packages that our Flask App needs to be run successfully.
