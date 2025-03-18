@@ -15,7 +15,7 @@ Let's define what's Docker before entering in depth in the project.
 </ul>
 <h2>Docker networking</h2><br/>
 <p>Imagine you have a web server and a database both running in a containers and you wanna send some SQL(Structured Query Language) requests to retrieve data from the database. Without networking, the container web server can't communicate with the container database to retrieve those data. Networking allows 2 or more containers to communicate together. By default, when a docker container is created without being assigned to a network driver, this one inherits the <b>bridge driver</b> which automatically created when docker is installed in the host operating system. That means all containers created without being assigned to a network driver, can communicate between each other.<br/>
-In Docker, there's 3 ways to create a network by using one of the following network driver:<br/>
+In Docker, there are 5 ways to create a network by using one of the following network driver:<br/>
 <ul>
 <li><b>Bridge driver:</b> This drive allows to create a network which is isolated from other containers which are not connected to the same drive network. The advantage of this drive, it permits you to interconnect more docker containers located in the same docker daemon host.</li>
 <li><b>Host driver:</b>This driver create (copy) all the network interfaces of the host operating system in which Docker has been installed in the container to create the container network. It means that the container network is not isolated from the host network. The benefit of this network driver is that you can create more services and make them communicate by ports (UDP or TCP ports connections).</li>
